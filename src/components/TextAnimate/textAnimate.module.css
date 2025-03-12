@@ -1,0 +1,32 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+   
+    width: 100vw;  
+    position: relative;
+    margin-top: 140px;
+}
+
+.subcontainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #d3d3d3;
+    font-family: 'mhiora';
+    font-weight: 600;
+    line-height: 120px;
+    height: auto; 
+    text-align: center; 
+}
+
+.first {
+    font-size: 7rem;
+}
+
+.second {
+    font-size: 7rem;
+    margin-bottom: 25px;
+}

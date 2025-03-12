@@ -1,0 +1,10 @@
+.content {
+  z-index: 2; 
+  cursor: url('/pointer.svg') 20 20, auto; 
+  transition: opacity 0.3s ease; /* Smooth transition */
+  padding: 10px 15px; /* Better clickability */
+}
+
+.content:hover {
+  opacity: 0.8; /* Hover effect */
+}

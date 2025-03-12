@@ -1,0 +1,13 @@
+.iconSelected {
+  font-family: "Quillain"; /* Your custom font for the selected icon */
+  
+}
+
+
+
+.title {
+  color: #1ff91f;
+  font-family: "Aguila"; /* Your custom font for the tooltip text */
+  font-weight: 400;
+  font-size: medium;
+}

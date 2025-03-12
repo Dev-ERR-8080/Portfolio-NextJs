@@ -1,0 +1,59 @@
+.sliderContainer {
+  height: 100%; /* Set to 100% to ensure it takes the full height */
+  display: flex;
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+}
+
+.main {
+  border: solid 0.5px #989898;
+  border-radius: 50px;
+  width: 280px;
+  padding: 5px;
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent background for contrast */
+}
+
+/* Individual content blocks */
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  
+}
+
+/* Adjust the context for spacing */
+.context {
+  font-size: 16px;
+  color: #d1d1d1;
+  font-family: 'Aguila';
+  letter-spacing: 0.1em;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-grow: 1; /* Allow the context to grow */
+}
+
+/* Add the diamond separator between words */
+.context::before {
+  content: " ✧ ";
+  font-size: 16px;
+  color: #00FF00; /* Green color for the diamond */
+  margin-right: 5px;
+}
+
+/* Adjust slider-icon properties */
+.slider-icon {
+  width: auto;
+  color: #00FF00;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1400px) {
+  .slider-icon {
+    height: 30px;
+  }
+
+  .context {
+    font-size: 16px;
+  }
+}

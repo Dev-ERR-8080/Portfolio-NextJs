@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+:root {
+  --cursor-size: 30px;
+}
+
+body {
+  position: relative; 
+  cursor: url('/mouseCursor.svg') 20 20, auto;
+}
+
+@font-face {
+  font-family: 'Autumn-Romans';
+  src: url('../app/fonts/Autumn-Romans-BF652cff2f37d23.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Quillain';
+  src: url('../app/fonts/Quillain.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Aguila';
+  src: url('../app/fonts/latinotype-aguila-thin.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'mhiora';
+  src: url('../app/fonts/mhiora-vm7rm.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Dark Mode Styles */
+.dark {
+  @apply bg-black text-white;
+}
+
+.light {
+  @apply bg-cream text-black;
+}
+

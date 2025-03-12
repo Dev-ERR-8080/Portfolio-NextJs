@@ -1,0 +1,8 @@
+.content{
+    display: flex;
+    position: relative;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
