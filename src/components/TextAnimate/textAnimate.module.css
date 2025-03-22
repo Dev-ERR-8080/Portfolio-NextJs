@@ -3,10 +3,10 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-   
     width: 100vw;  
     position: relative;
     margin-top: 140px;
+   
 }
 
 .subcontainer {
@@ -14,19 +14,23 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: #d3d3d3;
-    font-family: 'mhiora';
-    font-weight: 600;
+    color: #d3d3d3; 
     line-height: 120px;
     height: auto; 
     text-align: center; 
+    font-family: wakile;
+    font-weight: 300;
+    text-transform: uppercase;
 }
 
 .first {
     font-size: 7rem;
+    
 }
 
 .second {
     font-size: 7rem;
     margin-bottom: 25px;
+    font-family: wakile;
+    
 }

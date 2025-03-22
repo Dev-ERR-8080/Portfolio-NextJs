@@ -21,6 +21,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/components/Cursor/gooeyCoursor2.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/components/Cursor/gooeyCoursor2.js", "tailwind.config.js", "src/components/404/FuzzyText"],
   "exclude": ["node_modules"]
 }

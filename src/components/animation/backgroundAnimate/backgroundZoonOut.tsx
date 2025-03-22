@@ -21,10 +21,10 @@ const BackgroundZoom: React.FC = () => {
       <div className="fixed top-0 left-0 w-full h-full z-[-1] pointer-events-none">
         {/* Grainy Effect */}
         <div
-          className="absolute inset-0 bg-grain"
+          className="absolute inset-0 bg-grain z-[-1]"
           style={{
-            backgroundImage: `url('
-            ')`, // Optional texture URL for grainy effect
+            backgroundImage: `url(
+            )`, // Optional texture URL for grainy effect
             opacity: 0.3, // Adjust grain visibility
           }}
         />
@@ -39,7 +39,7 @@ const BackgroundZoom: React.FC = () => {
       </div>
 
       {/* RetroGrid Component */}
-      <RetroGrid />
+      
     </div>
   );
 };

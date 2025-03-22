@@ -6,7 +6,7 @@ const DarkOverlay: React.FC = () => {
     <motion.div
       className="fixed top-0 left-0 w-full h-full bg-black z-[-1]"
       initial={{ opacity: 0 }}
-      animate={{ opacity: 0.6 }}
+      animate={{ opacity: 0.7}}
       transition={{ duration: 1, ease: "easeInOut" }}
     />
   );
