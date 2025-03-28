@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import styles from './retroGrid.module.css'
+
 export function RetroGrid({
   
   angle = 180,
@@ -12,8 +12,7 @@ export function RetroGrid({
   return (
     <div
       className={cn(
-        "pointer-events-none absolute size-full overflow-hidden opacity-50 [perspective:200px] [height:100vh] z-index-[2]",
-        styles.content
+        "pointer-events-none absolute size-full overflow-hidden opacity-50 [perspective:200px] [height:100vh] z-[2] flex justify-center items-center"
       )}
       style={{ "--grid-angle": `${angle}deg` } as React.CSSProperties}
     >

@@ -1,7 +1,5 @@
 import React from "react";
-import DarkOverlay from "@/components/animation/backgroundAnimate/darkOverlay";
 import Image from "next/image";
-import styles from "./AboutPage.module.css"
 import Portrait from '../../public/lucas-clarysse-GFoFEoE900A-unsplash.jpg'
 import { AuroraBackground } from "@/components/ui/aurora-background";
 import { motion } from "framer-motion";
@@ -32,7 +30,7 @@ export default function About() {
                 <ShinyText text="//Who Am I?" disabled={false} speed={3} />
               </div>
       
-              <div className="flex flex-col gap-y-0 items-start text-[#b4b4b4] gap-y-3">
+              <div className="flex flex-col items-start text-[#b4b4b4] gap-y-3">
                 <div className="text-6xl font-bold uppercase tracking-[0.85em] leading-[3rem]">
                 Building 
                 </div>
@@ -63,17 +61,33 @@ export default function About() {
           </motion.div>
         </AuroraBackground>
       </div>
-      <div className="mb-40  px-[180px] pb-[150px] top-0 ">
-        <ScrollFloat animationDuration={1} ease='back.inOut(2)' scrollStart='center bottom+=50%' scrollEnd='bottom bottom-=40%' stagger={0.03} textClassName="text-4xl font-bold  text-left" >
-          {/* <ShinyText text="//About Me" disabled={false} speed={3} className='custom-class' /> */}
-          //About Me 
+      <div className="mb-40 px-[180px] pb-[150px] top-0 max-w-screen-lg mx-auto">
+        <ScrollFloat 
+          animationDuration={1} 
+          ease="back.inOut(2)" 
+          scrollStart="center bottom+=50%" 
+          scrollEnd="bottom bottom-=40%" 
+          stagger={0.03} 
+          textClassName="text-4xl font-bold text-left"
+        >
+          <span>About Me</span>
         </ScrollFloat>
-        <ScrollReveal baseOpacity={0.1} enableBlur={true} baseRotation={5} blurStrength={4} textClassName="text-2xl font-medium tracking-[0.1em] text-left">
-        👋 Hi, I'm Preetham Reddy Yelamancha, a passionate Full-Stack Developer and a B.Tech CSE student at Lovely Professional University (LPU), Punjab, graduating in 2026. I specialize in building scalable, user-friendly web applications using modern technologies.
 
-  With a strong foundation in Java, C, C++, JavaScript, PHP, and TypeScript, I have experience in both frontend and backend development. I enjoy creating seamless user experiences and optimizing system performance for efficiency.
+        <ScrollReveal 
+          baseOpacity={0.1} 
+          enableBlur={true} 
+          baseRotation={5} 
+          blurStrength={4} 
+          textClassName="text-2xl font-medium tracking-[0.1em] text-left"
+        >
+          👋 Hi, I am Preetham Reddy Yelamancha, a passionate Full-Stack Developer and a B.Tech CSE student at Lovely Professional University (LPU), Punjab, graduating in 2026.  
+          I specialize in building scalable, user-friendly web applications using modern technologies.  
+
+          With a strong foundation in Java, C, C++, JavaScript, PHP, and TypeScript, I have experience in both frontend and backend development.  
+          I enjoy creating seamless user experiences and optimizing system performance for efficiency.
         </ScrollReveal>
       </div>
+
     </div>
     
     );

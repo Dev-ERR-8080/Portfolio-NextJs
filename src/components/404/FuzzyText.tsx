@@ -11,9 +11,14 @@ interface FuzzyTextProps {
   hoverIntensity?: number;
 }
 
+// ✅ Define a custom type for the canvas to include cleanupFuzzyText
+interface CustomCanvas extends HTMLCanvasElement {
+  cleanupFuzzyText?: () => void;
+}
+
 const FuzzyText: React.FC<FuzzyTextProps> = ({
   children,
-  fontSize = "clamp(2rem, 8vw, 8rem)",
+  fontSize = "clamp(2rem, 8rem, 8rem)",
   fontWeight = 900,
   fontFamily = "inherit",
   color = "#fff",
@@ -21,7 +26,7 @@ const FuzzyText: React.FC<FuzzyTextProps> = ({
   baseIntensity = 0.18,
   hoverIntensity = 0.5,
 }) => {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const canvasRef = useRef<CustomCanvas | null>(null);
 
   useEffect(() => {
     let animationFrameId: number;
@@ -181,7 +186,8 @@ const FuzzyText: React.FC<FuzzyTextProps> = ({
         }
       };
 
-      (canvas as any).cleanupFuzzyText = cleanup;
+      // ✅ Assign cleanup function properly without `any`
+      canvas.cleanupFuzzyText = cleanup;
     };
 
     init();
@@ -189,8 +195,8 @@ const FuzzyText: React.FC<FuzzyTextProps> = ({
     return () => {
       isCancelled = true;
       window.cancelAnimationFrame(animationFrameId);
-      if (canvas && (canvas as any).cleanupFuzzyText) {
-        (canvas as any).cleanupFuzzyText();
+      if (canvas?.cleanupFuzzyText) {
+        canvas.cleanupFuzzyText();
       }
     };
   }, [

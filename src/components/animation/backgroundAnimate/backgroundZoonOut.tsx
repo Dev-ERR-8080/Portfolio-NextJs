@@ -1,4 +1,4 @@
-import { RetroGrid } from "@/components/RetroGrid/retroGrid";
+
 import { motion } from "framer-motion";
 import React from "react";
 
@@ -38,7 +38,7 @@ const BackgroundZoom: React.FC = () => {
         />
       </div>
 
-      {/* RetroGrid Component */}
+      
       
     </div>
   );

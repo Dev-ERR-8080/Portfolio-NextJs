@@ -8,8 +8,15 @@ html {
 
 :root {
   --cursor-size: 30px;
+  --font-aguila: 'Aguila', sans-serif;
+  --font-wakile: 'wakile', sans-serif;
+  --background: 240, 100%, 99%; /* Example: Light background color */
+  --foreground: 0, 0%, 0%; /* Example: Dark foreground */
 }
-
+.dark {
+  --background: 240, 100%, 10%; /* Example: Dark mode background */
+  --foreground: 0, 0%, 100%; /* Example: Light foreground */
+}
 body {
   position: relative; 
   cursor: url('/mouseCursor.svg') 20 20, auto;
@@ -106,26 +113,32 @@ body {
     --chart-5: 340 75% 55%;
   }
 }
+
+
+@layer base {
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+
 .dark {
   @apply bg-[#18181B] text-white;
 }
 
 .light {
-  @apply bg-cream text-black;
+  @apply bg-[#FEFAE0] text-black;
+}
+@layer components {
+  .bg-background {
+    background-color: #f8fafc; /* Replace with your desired color */
+  }
 }
 
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
-  }
-}
-
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
   }
 }
