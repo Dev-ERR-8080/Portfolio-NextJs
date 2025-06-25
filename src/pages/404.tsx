@@ -10,8 +10,8 @@ const NotFoundPage = () => {
             </FuzzyText>
         </div>
         <div  className="flex items-center justify-center h-25 bg-black">
-          <FuzzyText baseIntensity={0.2} hoverIntensity={0.25} enableHover={true} fontSize={35} fontWeight={500}>
-              not found
+          <FuzzyText baseIntensity={0.1} hoverIntensity={0.25} enableHover={true} fontSize={35} fontWeight={400}>
+              NOT FOUND
           </FuzzyText>
       </div>
       </div>

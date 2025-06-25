@@ -5,8 +5,9 @@
     justify-content: center;
     width: 100vw;  
     position: relative;
-    margin-top: 140px;
-   
+    margin-top: 60px ;
+    padding: 0 1rem; /* Add padding for smaller screens */
+    box-sizing: border-box;
 }
 
 .subcontainer {
@@ -14,23 +15,22 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: #d3d3d3; 
-    line-height: 120px;
-    height: auto; 
-    text-align: center; 
+    color: #d3d3d3;
+    line-height: 1.1;
+    height: auto;
+    text-align: center;
     font-family: wakile;
     font-weight: 300;
     text-transform: uppercase;
 }
 
-.first {
-    font-size: 7rem;
-    
+.first, .second {
+    font-size: clamp(4.2rem, 8vw, 7rem); /* Responsive font size */
+    font-family: wakile;
+    margin: 0;
 }
 
+/* Optional spacing tweak for .second */
 .second {
-    font-size: 7rem;
     margin-bottom: 25px;
-    font-family: wakile;
-    
 }

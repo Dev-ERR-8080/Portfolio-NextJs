@@ -1,4 +1,8 @@
 
+import { PluginAPI } from "tailwindcss/types/config";
+const { default: flattenColorPalette } = require("tailwindcss/lib/util/flattenColorPalette");
+
+/** @type {import('tailwindcss').Config} */
 const Config = {
   darkMode: "class",
   content: [
@@ -63,6 +67,7 @@ const Config = {
         grid: "grid 15s linear infinite",
         aurora: "aurora 60s linear infinite",
         shine: 'shine 5s linear infinite',
+        'spin-slow': 'spin 8s linear infinite',
       },
       keyframes: {
         grid: {
@@ -97,9 +102,28 @@ const Config = {
         "grid-pattern": "url('/grid-pattern.svg')",
         "grid-pattern-light": "url('/grid-pattern-light.svg')",
       },
+      textShadow: {
+        sm: '1px 1px 2px rgba(0,0,0,0.5)',
+        DEFAULT: '2px 2px 4px rgba(0,0,0,0.5)',
+        lg: '3px 3px 6px rgba(0,0,0,0.7)',
+        neon: '0 0 10px #45FF17, 0 0 20px #45FF17',
+      },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate"),addVariablesForColors,require('tailwindcss-textshadow')],
 };
 
+function addVariablesForColors({ addBase, theme }: PluginAPI) {
+  let allColors = flattenColorPalette(theme("colors")) as Record<string, string>;
+
+  let newVars: Record<string, string> = Object.fromEntries(
+    Object.entries(allColors).map(([key, val]) => [`--${key}`, String(val)]) // Ensure values are strings
+  );
+
+  addBase({
+    ":root": {
+      ...newVars, // Ensure it is properly spread as CSS properties
+    },
+  });
+}
 export default Config;

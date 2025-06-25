@@ -29,7 +29,7 @@ export function Floating() {
         title: "Home",
         icon: (
           <IconHome 
-          className="h-full w-full text-neutral-500 dark:text-highlight" 
+          className="h-full w-full text-neutral-600 dark:text-highlight" 
           />
         ),
         href: "/",
@@ -39,7 +39,7 @@ export function Floating() {
         title: "About",
         icon: (
           <IconInfoCircle 
-          className="h-full w-full text-neutral-500 dark:text-neutral-300"
+          className="h-full w-full text-neutral-600 dark:text-neutral-300"
            />
         ),
         href: "/about",
@@ -48,7 +48,7 @@ export function Floating() {
         title: "Work",
         icon: (
           <IconBriefcase 
-          className="h-full w-full text-neutral-500 dark:text-neutral-300" 
+          className="h-full w-full text-neutral-600 dark:text-neutral-300" 
           
           />
         ),
@@ -58,7 +58,7 @@ export function Floating() {
         title: "Play",
         icon: (
           <IconDeviceGamepad2 
-          className="h-full w-full text-neutral-500 dark:text-neutral-300 " 
+          className="h-full w-full text-neutral-600 dark:text-neutral-300 " 
           
           />
         ),
@@ -74,8 +74,8 @@ export function Floating() {
           animate={isLoaded?"visible" : "hidden"}  // Animation state after component mounts
           transition={{ staggerChildren: 0.5, duration: 0.3 }} // Delays between items and duration of animation
         >
-        <motion.div className="h-[20rem] " variants={itemVariants} >
-            <FloatingDoc items={links} mobileClassName="translate-y-20" />
+        <motion.div className="h-[2rem] " variants={itemVariants} >
+            <FloatingDoc items={links} mobileClassName="translate-y-60 translate-x-40" />
         </motion.div>
       </motion.div>
     )

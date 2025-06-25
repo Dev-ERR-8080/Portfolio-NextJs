@@ -1,8 +1,8 @@
-.container {
+/* .container {
   display: flex;
   flex-direction: column;
   align-items: start;
-  gap: 0.5rem; /* Equivalent to space-y-2 */
+  gap: 0.5rem; 
 }
 
 .heading {
@@ -50,4 +50,4 @@
 .footer .inline-block {
   display: inline-block;
   transform-origin: bottom right;
-}
+} */

@@ -41,10 +41,17 @@
 //     </html>
 //   );
 // }
+import { useLenisScroll } from "@/hooks/useLenisScroll";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
-
+import MaintenancePage from "./maintenance";
 export default function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+    const maintenanceMode = process.env.NEXT_PUBLIC_MAINTENANCE_MODE === 'true';
+    console.log("Maintenance Mode:", maintenanceMode);
+    useLenisScroll();
+    if (maintenanceMode) {
+        return <MaintenancePage />;
+    }
+    return <Component {...pageProps} />;
 }
 

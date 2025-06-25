@@ -2,8 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
+/* html {
   scroll-behavior: smooth;
+} */
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: sans-serif;
+  scroll-behavior: auto; 
+  overflow-x: hidden;
+  scrollbar-width: none;
 }
 
 :root {
@@ -21,6 +31,14 @@ body {
   position: relative; 
   cursor: url('/mouseCursor.svg') 20 20, auto;
   font-family: Arial, Helvetica, sans-serif;
+}
+/* styles.css */
+.rotate-text {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.75rem;
+  line-height: 1rem;
 }
 
 @font-face {
@@ -56,7 +74,18 @@ body {
   font-weight: 300;
   font-style: normal;
 }
-
+@font-face{
+  font-family:'Havock';
+  src: url('/fonts/Havock.otf') format('opentype');
+  font-weight: 500;
+  font-style: bold;
+}
+@font-face{
+  font-family: "moderniz";
+  src: url('/fonts/moderniz.otf') format('opentype');
+  font-weight: 500;
+  font-style: bold;
+}
 
 @layer base {
   :root {
