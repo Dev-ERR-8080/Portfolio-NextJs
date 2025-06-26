@@ -55,7 +55,7 @@ export default function About() {
       </div>
 
       {/* Skills Section */}
-      <div className="px-4 md:px-8 lg:px-[80px] pb-[50px] flex flex-col max-w-screen-xl mx-auto ">
+      <div className="px-4 md:px-8 lg:px-[80px] pb-[50px] flex flex-col max-w-screen-xl mx-auto bg-[url('/skills_background2.png')] sm:bg-[length:400px_auto] md:bg-[length:400px_auto] lg:bg-[length:800px_auto] bg-[-50px_30px] bg-no-repeat " >
         <SkillsSection />
         
       </div>
