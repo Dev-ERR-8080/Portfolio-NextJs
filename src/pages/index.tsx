@@ -52,6 +52,7 @@ import { InfiniteSliderBasic } from "@/components/slider/sliderHome";
 import "./Landingpage.module.css";
 import { Floating } from "@/components/floating/floating";
 import { RetroGrid } from "@/components/RetroGrid/retroGrid";
+import ThemeToggleButton from "@/components/themeToggle/themeToggleButton";
 
 const Landingpage: React.FC = () => {
   return (
@@ -68,7 +69,12 @@ const Landingpage: React.FC = () => {
         <div className="w-full max-w-4xl flex justify-center items-center">
           <TimeComponent />
         </div>
-
+        
+        {/* Theme Toggle Button */}
+        {/* <div className="absolute right-5 top-5 flex justify-end items-center mb-4">
+          <ThemeToggleButton />
+        </div> */}
+        
         {/* Text Animation */}
         <div className="w-full max-w-4xl flex justify-center items-center text-center">
           <TextEffectWithCustomDelay />

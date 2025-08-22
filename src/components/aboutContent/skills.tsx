@@ -17,7 +17,8 @@ const SkillsSection = () => {
   }, []);
 
   return (
-    <><SplitText
+    <>
+    <SplitText
       text="Technical Skills"
       className="text-left text-[#45FF17] text-[clamp(2vw,4vw,8vw)] leading-[1.5] font-extrabold tracking-tight mix-blend-difference z-1"
       delay={100}
@@ -25,8 +26,9 @@ const SkillsSection = () => {
       animationTo={{ opacity: 1, transform: "translate3d(0,0,0)" }}
       textAlign="start"
       threshold={0.2}
-      rootMargin="-50px" /><div className="text-white space-y-8 px-4 sm:px-12 py-10">
-
+      rootMargin="-50px" />
+      
+    <div className="text-white space-y-8 px-4 sm:px-12 py-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 ">
           {skillsData.map((item) => (
             <div

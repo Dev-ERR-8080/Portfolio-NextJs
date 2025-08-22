@@ -15,7 +15,7 @@ const AboutMain=()=>{
               duration: 0.8,
               ease: "easeInOut",
             }}
-            className="flex flex-row gap-[45px] justify-center items-center m-[15px]"
+            className="flex flex-row gap-[45px] justify-center items-center m-[15px] "
           >
             {/* Left Content */}
             

@@ -165,6 +165,19 @@ body {
   }
 }
 
+@keyframes spin-snap {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-snap {
+  animation: spin-snap 1s ease-in-out forwards;
+}
+
 
 @layer utilities {
   .text-balance {

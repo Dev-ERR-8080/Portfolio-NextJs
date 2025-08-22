@@ -10,17 +10,26 @@ import RotatingText from "@/components/TextAnimate/RotatingText/RotatingText";
 
 export default function About() {
   return (
-    //min-h-screen removed from the below div to remove the effect on lenis
     
     <div className="dark dark:bg-[#18181B] w-full relative z-10">
       {/* Global background texture overlay */}
-     
-      <div>
+      <div className="relative">
+      <div >
         <AboutMain />
       </div>
 
+      {/*skills Background Image */}
+      <div className="absolute top-[20%] left-[55%] w-[820px] pointer-events-none z-0 ">
+        <img
+          src="/car2.png"
+          alt="Music Illustration"
+          className="w-full h-full object-contain "
+          loading="lazy"
+        />
+      </div>
+
       {/* About Me Section */}
-      <div className="px-4 md:px-8 lg:px-[80px] pb-[50px] flex flex-col gap-6 max-w-screen-xl mx-auto bg-[url('/car2.png')] sm:bg-[length:400px_auto] md:bg-[length:400px_auto] lg:bg-[length:600px_auto] bg-no-repeat bg-right-bottom">
+      <div className="px-4 md:px-8 lg:px-[80px] pb-[50px] flex flex-col gap-6 max-w-screen-xl mx-auto ">
         <ScrollFloat
           animationDuration={1}
           ease="back.inOut(2)"
@@ -31,18 +40,8 @@ export default function About() {
         >
           About Me
         </ScrollFloat>
-        {/* <ScrollFloat>
-          👋 Hi, I am <b>Preetham Reddy Yelamancha</b>, a passionate Full-Stack Developer and a B.Tech CSE student at
-            Lovely Professional University (LPU), Punjab, graduating in 2026.
-            
-            I specialize in building scalable, user-friendly web applications using modern technologies.
-            
-            With a strong foundation in <b>Java, C, C++, JavaScript, PHP, and TypeScript</b>, I have experience in both
-            frontend and backend development. I enjoy creating seamless user experiences and optimizing system performance
-            for efficiency
-        </ScrollFloat>
-         */}
-        <h1 className="font-[] text-left  text-[clamp(0.6rem,1vw,1.2rem)] leading-[1.5] font-light tracking-wider  mix-blend-difference z-1">
+        
+        <h1 className=" text-left sm:text-sm md:text-lg lg:text-xlleading-[1.5] font-light tracking-wider  mix-blend-difference z-1 space-y-8 px-4 sm:px-12 ">
           👋 Hi, I am <b>Preetham Reddy Yelamancha</b>, a passionate Full-Stack Developer and a B.Tech CSE student at
           Lovely Professional University (LPU), Punjab, graduating in 2026.
           <br /><br />
@@ -53,20 +52,39 @@ export default function About() {
           for efficiency.
         </h1>
       </div>
-
-      {/* Skills Section */}
-      <div className="px-4 md:px-8 lg:px-[80px] pb-[50px] flex flex-col max-w-screen-xl mx-auto bg-[url('/skills_background2.png')] sm:bg-[length:400px_auto] md:bg-[length:400px_auto] lg:bg-[length:800px_auto] bg-[-50px_30px] bg-no-repeat " >
-        <SkillsSection />
-        
+      {/*skills Background Image */}
+      <div className="absolute top-[40%] left-[3%] w-[820px] pointer-events-none z-0 ">
+        <img
+          src="/skills_background2.png"
+          alt="Music Illustration"
+          className="w-full h-full object-contain"
+          loading="lazy"
+        />
       </div>
-
+   
+      {/* Skills Section */}
+      <div className="px-4 md:px-8 lg:px-[80px] pb-[50px] flex flex-col max-w-screen-xl mx-auto" >
+        <SkillsSection />
+      </div>
+      {/*music Background Image */}
+      <div className="absolute top-[55%] left-[55%]  pointer-events-none z-0 ">
+        <img
+          src="/music.png"
+          alt="Music Illustration"
+          className="w-full h-full object-contain rotate-6"
+          loading="lazy"
+        />
+      </div>
+        
       {/* Projects Section */}
       <div className="px-4 md:px-8 lg:px-[80px] pb-[50px] flex flex-col max-w-screen-xl mx-auto">
         <ProjectBasic />
        
       </div>
+
+    </div> 
       {/* carrer goals */}
-      <div className="px-4 md:px-8 lg:px-[80px] pb-[50px] flex flex-col max-w-screen-xl mx-auto">
+      <div className="px-4 md:px-8 lg:px-[80px] pb-[50px] flex flex-col max-w-screen-xl mx-auto space-y-8  sm:px-12">
       <BlurText
         text="Career Goals"
         delay={150}
@@ -75,18 +93,26 @@ export default function About() {
         className="text-left text-[#45FF17] text-[clamp(2vw,4vw,8vw)] leading-[1.5] pb-8  font-extrabold tracking-tight  mix-blend-difference z-1"
       />
       <BlurText
-        text="I am actively seeking opportunities as a Full-Stack Developer or Frontend Developer to contribute my skills in modern web technologies. My goal is to build efficient, scalable, and user-centric applications that enhance real-world experiences."
+        text="I am actively seeking opportunities as a Software Developer or Full Stack Developer to contribute my skills in modern web technologies. My goal is to build efficient, scalable, and user-centric applications that enhance real-world experiences."
         delay={50}
         animateBy="words"
         direction="top"
-        className="text-2xl mb-8"
+        className="sm:text-sm md:text-lg lg:text-xl mb-2 pb-4 border-b-[0.5px] border-gray-500 px-4 sm:px-12 "
       />
-      
-      <h1 className=" flex flex-row gap-4 text-2xl leading-[1.5] pb-8  font-medium tracking-tight  mix-blend-difference z-1">Outside of development, I enjoy  
-        
+      {/* badminton Background Image */}
+      <div className="absolute top-[83%] left-[68%]  pointer-events-none z-0 ">
+        <img
+          src="/badminton.png"
+          alt="Badminton Illustration"
+          className="w-full h-full object-contain scale-x-[-1]"
+          loading="lazy"
+        />
+      </div>
+      <h1 className=" flex flex-row gap-4 sm:text-sm md:text-lg lg:text-xl mb-2 leading-[1.5] pb-8  font-medium tracking-tight  mix-blend-difference z-1">Outside of development, I enjoy
+
           <RotatingText
-            texts={['Photogrphy', 'Music', 'Badmintion', 'Cool!']}
-            mainClassName="px-2 w-fit sm:px-2 md:px-3 bg-cyan-300  text-black font-bold overflow-hidden py-0.5 sm:py-1 md:py-2 justify-center rounded-lg"
+            texts={['Photography', 'Music', 'Badminton', 'Cool!']}
+            mainClassName="px-2 w-fit sm:px-2 md:px-3 bg-cyan-300  text-black font-bold overflow-hidden py-0.5 sm:py-1 md:py-2 rounded-lg"
             staggerFrom={"last"}
             initial={{ y: "100%" }}
             animate={{ y: 0 }}

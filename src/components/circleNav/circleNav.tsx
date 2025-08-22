@@ -1,85 +1,101 @@
+// import React, { useState } from "react";
 // import { useRouter } from "next/router";
-// import { useEffect, useState } from "react";
-// import { FaForward } from "react-icons/fa"; // Forward icon
-// import CircularText from "./CircularText";
 
-// export default function RotatingDial() {
+// import CircularText from "./CircularText";
+// import { on } from "events";
+// type Props={
+//   onClick: () => void;
+// }
+// const NavigationDial = ({ onClick }: Props) => {
 //   const router = useRouter();
-//   const [rotation, setRotation] = useState(0);
+//   const [triggerSpin, setTriggerSpin] = useState(false);
+//   const [spinDuration, setSpinDuration] = useState(20);
 
 //   const handleClick = () => {
-//     // Rotate on click
-//     setRotation((prev) => prev + 90); // 90 deg per click
-//     // Navigate to the next page (replace with your logic)
+//     // Trigger quick spin
+    
+//     setSpinDuration(1);
+//     setTriggerSpin((prev) => !prev);
+
+//     // Navigate after spin
 //     setTimeout(() => {
-//       router.push("/"); // Change this to your actual route
-//     }, 300); // small delay for animation
+//       router.push("/next"); // Change to your actual next page
+//     }, 1000); // matches spinDuration
 //   };
 
 //   return (
-//     <div className="relative w-[200px] h-[200px] flex items-center justify-center">
-//       {/* Rotating ring */}
-//         <div 
-//             className="absolute w-full h-full transition-transform duration-500 ease-in-out"
-//         >
-//             <CircularText
-//                 text=" HOME * ABOUT * WORK * PLAY *" 
-//                 onHover="pause"
-//                 spinDuration={20}
-//                 className="custom-class"
-                
-//             />
-//         </div>
-//       {/* Center Forward Icon */}
+//     <div className="relative w-[150px] h-[150px] flex items-center justify-center">
+//       {/* Rotating Circular Text */}
+//       {/* <CircularText
+//         key={triggerSpin ? "spin-1" : "spin-0"} // Force re-render to restart animation
+//         text="LISTEN TO THE NEXT PROJECT • NEXT •"
+//         spinDuration={spinDuration}
+//         onHover="pause"
+//         className="text-orange-500 "
+//       /> */}
+
+//       {/* Center Button */}
 //       <button
-//         className="z-10 bg-black text-white p-4 rounded-full hover:scale-105 transition-transform duration-300"
-//         onClick={handleClick}
+//         onClick={onClick}
+//         className="absolute z-100  text-white  rounded-full hover:scale-110 transition duration-300"
 //       >
-//         <FaForward size={20} />
+//         <img src="./arrow_orange.png" alt="arrow_right" height={15} width={80} />
 //       </button>
 //     </div>
 //   );
-// }
+// };
 
-// components/NavigationDial.tsx
+// export default NavigationDial;
+
+
+
 import React, { useState } from "react";
-import { useRouter } from "next/router";
-
 import CircularText from "./CircularText";
 
-const NavigationDial = () => {
-  const router = useRouter();
+type Props = {
+  onClick: () => void;
+  
+};
+
+const NavigationDial = ({ onClick  }: Props) => {
   const [triggerSpin, setTriggerSpin] = useState(false);
-  const [spinDuration, setSpinDuration] = useState(20);
-
+  const [spinDuration, setSpinDuration] = useState(10); // in seconds
+  
   const handleClick = () => {
-    // Trigger quick spin
-    setSpinDuration(1);
-    setTriggerSpin((prev) => !prev);
+    // 1. Trigger the spin
+    setTriggerSpin(false);
 
-    // Navigate after spin
-    setTimeout(() => {
-      router.push("/next"); // Change to your actual next page
-    }, 1000); // matches spinDuration
+    // 2. Trigger the passed in logic (e.g., vaporize nextText)
+    onClick();
+
+    // 3. Set spin duration to 20 seconds for the full spin
+    
+
+    // 4. Reset spin after duration to allow repeat clicking
+    setTimeout(() => setTriggerSpin(false), spinDuration * 1000);
   };
 
   return (
-    <div className="relative w-[150px] h-[150px] flex items-center justify-center">
-      {/* Rotating Circular Text */}
-      <CircularText
-        key={triggerSpin ? "spin-1" : "spin-0"} // Force re-render to restart animation
+    <div className="relative z-10 w-[150px] h-[150px] flex items-center justify-center">
+      
+      {/* Optional: Circular text spinner */}
+      {/* <CircularText
+        key={triggerSpin ? "spin-1" : "spin-0"} // re-renders to trigger CSS spin
         text="LISTEN TO THE NEXT PROJECT • NEXT •"
         spinDuration={spinDuration}
         onHover="pause"
-        className="text-orange-500 "
-      />
+        className="text-orange-500"
+      /> */}
 
-      {/* Center Button */}
+      {/* Spinning Button with Image */}
       <button
+        
         onClick={handleClick}
-        className="absolute z-10  text-white p-4 rounded-full hover:scale-110 transition duration-300"
+        className={`absolute z-10 rounded-full transition duration-300 hover:scale-110  
+          ${triggerSpin ? "animate-spin-snap" : ""}
+        `}
       >
-        <img src="./arrow_orange.png" alt="arrow_right" height={15} width={80} />
+        <img src="/arrow_orange.png" alt="arrow_right" height={50} width={50} />
       </button>
     </div>
   );
