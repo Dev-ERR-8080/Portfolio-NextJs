@@ -9,6 +9,7 @@ export default async function handler(req , res) {
       description,
       github_url,
       live_url,
+      background_url,
       features (
         id,
         title,

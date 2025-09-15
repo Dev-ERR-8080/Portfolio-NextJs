@@ -1,5 +1,6 @@
 "use client";
 
+import { wrap } from "module";
 import React, { useRef, useEffect, useState, createElement, useMemo, useCallback, memo, forwardRef, useImperativeHandle } from "react";
 
 export enum Tag {
@@ -153,6 +154,7 @@ const VaporizeTextCycle = forwardRef(function VaporizeTextCycle({
 
   const wrapperStyle = useMemo(() => ({
     width: "100%",
+    //height: `${totalHeight}px`,
     pointerEvents: "none" as const,
     position: "relative" as const,
     display: "inline-block", // Ensures layout reflows
@@ -161,7 +163,7 @@ const VaporizeTextCycle = forwardRef(function VaporizeTextCycle({
 
   const canvasStyle = useMemo(() => ({
     width: "100%",
-    height: "auto",
+    height: "100%",
     pointerEvents: "none" as const,
     display: "block",
   }), []);
@@ -515,43 +517,85 @@ const renderCanvas = ({
   transformedDensity: number;
 }) => {
   const canvas = canvasRef.current;
-  if (!canvas || !wrapperSize.width || !wrapperSize.height) return;
+  if (!canvas || !wrapperSize.width ) return;
 
   const ctx = canvas.getContext("2d", { willReadFrequently: true }) || canvas.getContext("2d");
 
   if (!ctx) return;
 
-  const { width, height } = wrapperSize;
-
-  canvas.style.width = `${width}px`;
-  canvas.style.height = `${height}px`;
-  canvas.width = Math.floor(width * globalDpr);
-  canvas.height = Math.floor(height * globalDpr);
-  ctx.scale(globalDpr * 0.5, globalDpr * 0.5);
-
   const rawFontSize =
     typeof framerProps.font?.fontSize === "string"
       ? framerProps.font.fontSize
       : framerProps.font?.fontSize?.[getCurrentScreenSize()] ?? "50px";
-
-  const fontSize = parseInt(rawFontSize.replace("px", "") || "50");
- 
+  
+  const fontSize = parseInt(rawFontSize.replace("px", "") || "50");   
   const font = `${framerProps.font?.fontWeight ?? 400} ${fontSize * globalDpr}px ${framerProps.font?.fontFamily ?? "sans-serif"}`;
   const color = parseColor(framerProps.color ?? "rgb(153, 153, 153)");
-
-  let textX;
-  const textY = canvas.height / 2;
+  
   const currentText = framerProps.texts[currentTextIndex] || "Next.js";
+  ctx.font = font;
+
+  //calculate wrapped lines
+  const maxWidth = wrapperSize.width * 0.7;
+  const words = currentText.split(" ");
+  let line = "";
+  let lines: string[] = [];
+  words.forEach((word) => {
+    const testLine = line + word + " ";
+    if (ctx.measureText(testLine).width > maxWidth && line !== "") {
+      lines.push(line.trim());
+      line = word + " ";
+    } else {
+      line = testLine;
+    }
+  });
+  lines.push(line.trim());
+
+  const lineHeight = fontSize * 1.5;
+  const textHeight = lines.length * lineHeight;
+  const padding = fontSize * 0.8;
+  const totalHeight = textHeight + padding * 2;
+
+  canvas.style.width = `${wrapperSize.width}px`;
+  canvas.style.height = `${totalHeight}px`;
+  canvas.width = Math.floor(wrapperSize.width * globalDpr);
+  canvas.height = Math.floor(totalHeight * globalDpr);
+  ctx.scale(globalDpr * 0.5, globalDpr * 0.5);
+
+
+
+  // Render particles for these lines
+  let textX: number;
+  //const textY = canvas.height / 2;
 
   if (framerProps.alignment === "center") {
-    textX = canvas.width / 2;
+    textX = wrapperSize.width / 2;
   } else if (framerProps.alignment === "left") {
     textX = 0;
   } else {
-    textX = canvas.width;
+    textX = wrapperSize.width;
   }
 
-  const { particles, textBoundaries } = createParticles(ctx, canvas, currentText, textX, textY, font, color, framerProps.alignment || "left", fontSize);
+  let currentY = padding;
+  lines.forEach((lineText) => {
+    ctx.fillStyle = color;
+    ctx.textAlign = framerProps.alignment ?? "center";
+    ctx.textBaseline = "top";
+    ctx.fillText(lineText, textX, currentY);
+    currentY += lineHeight;
+  });
+
+  const { particles, textBoundaries } = createParticles(
+    ctx,
+    canvas,
+    currentText,
+    textX,
+    padding,
+    font,
+    color,
+    framerProps.alignment || "left",
+    fontSize
+  );
 
   particlesRef.current = particles;
   canvas.textBoundaries = textBoundaries;

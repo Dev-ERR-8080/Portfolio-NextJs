@@ -52,7 +52,6 @@ import { InfiniteSliderBasic } from "@/components/slider/sliderHome";
 import "./Landingpage.module.css";
 import { Floating } from "@/components/floating/floating";
 import { RetroGrid } from "@/components/RetroGrid/retroGrid";
-import ThemeToggleButton from "@/components/themeToggle/themeToggleButton";
 
 const Landingpage: React.FC = () => {
   return (

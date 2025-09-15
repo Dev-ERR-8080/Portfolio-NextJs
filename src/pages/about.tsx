@@ -47,7 +47,7 @@ export default function About() {
           <br /><br />
           I specialize in building scalable, user-friendly web applications using modern technologies.
           <br /><br />
-          With a strong foundation in <b>Java, C, C++, JavaScript, PHP, and TypeScript</b>, I have experience in both
+          With a strong foundation in <b>Java, Python, JavaScript, ReactJS, and NodeJS</b>, I have experience in both
           frontend and backend development. I enjoy creating seamless user experiences and optimizing system performance
           for efficiency.
         </h1>

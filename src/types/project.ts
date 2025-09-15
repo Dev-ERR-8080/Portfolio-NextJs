@@ -17,5 +17,6 @@ export interface Project {
   description: string
   github_url: string
   live_url: string
+  background_url: string
   features: Feature[]
 }
