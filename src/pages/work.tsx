@@ -5,6 +5,7 @@ import VaporizeTextCycle, { Tag } from "@/components/ui/vapour-text-effect-butto
 import NavigationDial from "@/components/circleNav/circleNav"
 import { Floating } from "@/components/floating/floating"
 // import Image from "next/image" // ✅ Uncomment if using next/image
+import MaintenancePage from "./maintenance";
 
 type FeatureDetail = {
   description: string
@@ -32,7 +33,7 @@ export default function Work() {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [loading, setLoading] = useState(true)
   const vaporRef = useRef<any>(null)
-
+  const [maintance,setMaintance] = useState(true)
   useEffect(() => {
     fetch("/api/projects")
       .then((res) => res.json())
@@ -50,7 +51,9 @@ export default function Work() {
     console.log("[DEBUG] Switching to next project")
     setCurrentIndex((prev) => (prev + 1) % projects.length)
   }
-
+  if(maintance){
+    return <MaintenancePage />
+  }
   if (loading) {
     return <div className="text-center pt-32 text-gray-400">Loading Projects...</div>
   }
@@ -216,4 +219,5 @@ function ProjectDetails({ project }: { project: Project }) {
     </div>
   )
 }
+
 
