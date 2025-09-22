@@ -14,6 +14,7 @@ export default async function handler(req , res) {
         id,
         title,
         feature_details (
+          heading,
           description,
           image_url
         )

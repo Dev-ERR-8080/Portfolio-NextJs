@@ -1,43 +1,3 @@
-// import { BoxReveal } from "../ui/boxRevel";
-
-// const ProjectBasic= () => {
-//   return (
-//     <div className="size-full max-w-lg items-center justify-center overflow-hidden pt-8 ">
-//       <BoxReveal boxColor={"#5046e6"} duration={0.5}>
-//         <h1 className="text-[clamp(1.6rem,4vw,3rem)] leading-[1.5] font-bold text-[#45FF17] ">
-//           Project
-//         </h1>
-//       </BoxReveal>
-
-//       <BoxReveal boxColor={"#5046e6"} duration={0.5}>
-//         <h2 className="mt-[.5rem] text-[1rem] text-lg sm:text-xl font-semibold text-white underline">
-//           Kanishka Dhaba – Automated Restaurant Website (MERN Stack)
-//         </h2>
-//       </BoxReveal>
-
-//       <BoxReveal boxColor={"#5046e6"} duration={0.5}>
-//         <div className="mt-6">
-//           <p>
-//             -&gt; 20+ free and open-source animated components built with
-//             <span className="font-semibold text-[#5046e6]">React</span>,
-//             <span className="font-semibold text-[#5046e6]">Typescript</span>,
-//             <span className="font-semibold text-[#5046e6]">Tailwind CSS</span>,
-//             and
-//             <span className="font-semibold text-[#5046e6]">Motion</span>
-//             . <br />
-//             -&gt; 100% open-source, and customizable. <br />
-//           </p>
-//         </div>
-//       </BoxReveal>
-
-//       <BoxReveal boxColor={"#5046e6"} duration={0.5}>
-//         <button className="mt-[1.6rem] bg-[#5046e6]">Explore</button>
-//       </BoxReveal>
-//     </div>
-//   );
-// }
-// export default ProjectBasic;
-
 "use client";
 
 import { BoxReveal } from "../ui/boxRevel";
@@ -45,6 +5,8 @@ import Image from "next/image";
 import packYourBags from "../../../public/pack_your_bags2.png";
 import kanishkaDhaba from "../../../public/kanishka_dhaba.png";
 import { useRouter } from "next/router";
+import { motion } from "framer-motion";
+import { Button } from "../partials/button";
 
 const ProjectBasic = () => {
   const router = useRouter();
@@ -125,15 +87,30 @@ const ProjectBasic = () => {
         {/* Explore Button */}
         <BoxReveal boxColor={"#5046e6"} duration={0.5}>
           <div className="text-center mt-10">
-            <button
+            <Button
               onClick={handleExploreClick}
               className="bg-[#5046e6] px-6 py-2 text-white font-medium rounded hover:bg-[#3f3bd4] transition duration-300"
             >
               Explore Projects
-            </button>
+            </Button>
           </div>
         </BoxReveal>
-      </div></>
+      </div>
+       <div className="absolute left-0 w-full h-full opacity-35 pointer-events-none z-0 blur-3xl">
+        <motion.div
+          initial={{ x: -100, y: -100 }}
+          animate={{ x: 100, y: 100 }}
+          transition={{ repeat: Infinity, duration: 20, ease: "easeInOut", repeatType: "reverse" }}
+          className="w-[500px] h-[500px] bg-[#ff5733] rounded-full opacity-30"
+        />
+        <motion.div
+          initial={{ x: 200, y: 200 }}
+          animate={{ x: -100, y: -150 }}
+          transition={{ repeat: Infinity, duration: 25, ease: "easeInOut", repeatType: "reverse" }}
+          className="w-[400px] h-[400px] bg-[#1abc9c] rounded-full opacity-20"
+        />
+      </div>
+      </>
   );
 };
 

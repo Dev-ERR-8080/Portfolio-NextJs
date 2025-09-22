@@ -46,7 +46,7 @@ const CircularText: React.FC<CircularTextProps> = ({
       scale: 1,
       transition: getTransition(spinDuration, currentRotation),
     });
-  }, [spinDuration, controls, onHover, text]);
+  }, [spinDuration, controls, onHover, text,currentRotation]);
 
   const handleHoverStart = () => {
     if (!onHover) return;
@@ -98,7 +98,7 @@ const CircularText: React.FC<CircularTextProps> = ({
   return (
     <motion.div
       initial={{ rotate: 0 }}
-      className={`mx-auto rounded-full w-[150px] h-[150px] text-green-[#FF4DOO] font-black text-center cursor-pointer origin-center ${className}`}
+      className={`mx-auto rounded-full w-[150px] h-[150px] text-green-[#FF4DOO] font-black text-center origin-center ${className}`}
       animate={controls}
       onUpdate={(latest) => setCurrentRotation(Number(latest.rotate))}
       onMouseEnter={handleHoverStart}
@@ -118,6 +118,7 @@ const CircularText: React.FC<CircularTextProps> = ({
             style={{ transform, WebkitTransform: transform }}
           >
             {letter}
+            
           </span>
         );
       })}

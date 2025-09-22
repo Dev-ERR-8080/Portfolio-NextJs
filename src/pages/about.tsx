@@ -6,7 +6,7 @@ import AboutMain from "@/components/aboutContent/aboutMain";
 import { Floating } from "@/components/floating/floating";
 import BlurText from "@/components/TextAnimate/BlurText/BlurText";
 import RotatingText from "@/components/TextAnimate/RotatingText/RotatingText";
-
+import Image from "next/image";
 
 export default function About() {
   return (
@@ -20,11 +20,14 @@ export default function About() {
 
       {/*skills Background Image */}
       <div className="absolute top-[20%] left-[55%] w-[820px] pointer-events-none z-0 ">
-        <img
+        <Image
           src="/car2.png"
           alt="Music Illustration"
           className="w-full h-full object-contain "
           loading="lazy"
+          width={400}
+          height={400}
+          objectFit="contain"
         />
       </div>
 
@@ -54,11 +57,14 @@ export default function About() {
       </div>
       {/*skills Background Image */}
       <div className="absolute top-[40%] left-[3%] w-[820px] pointer-events-none z-0 ">
-        <img
+        <Image
           src="/skills_background2.png"
           alt="Music Illustration"
           className="w-full h-full object-contain"
           loading="lazy"
+          width={400} 
+          height={400}
+          objectFit="contain"
         />
       </div>
    
@@ -68,11 +74,14 @@ export default function About() {
       </div>
       {/*music Background Image */}
       <div className="absolute top-[55%] left-[55%]  pointer-events-none z-0 ">
-        <img
+        <Image
           src="/music.png"
           alt="Music Illustration"
           className="w-full h-full object-contain rotate-6"
           loading="lazy"
+          width={400}
+          height={400}
+          objectFit="contain"
         />
       </div>
         
@@ -101,11 +110,14 @@ export default function About() {
       />
       {/* badminton Background Image */}
       <div className="absolute top-[83%] left-[68%]  pointer-events-none z-0 ">
-        <img
+        <Image
           src="/badminton.png"
           alt="Badminton Illustration"
           className="w-full h-full object-contain scale-x-[-1]"
           loading="lazy"
+          width={400}
+          height={400}
+          objectFit="contain"
         />
       </div>
       <h1 className=" flex flex-row gap-4 sm:text-sm md:text-lg lg:text-xl mb-2 leading-[1.5] pb-8  font-medium tracking-tight  mix-blend-difference z-1">Outside of development, I enjoy
@@ -127,7 +139,10 @@ export default function About() {
       </div>
       
       
-     
+    <div className="absolute inset-0 bg-gradient-to-br from-transparent via-black/40 to-black/30 pointer-events-none z-0" />
+   
+    
+
       
 
       {/* Floating Element */}

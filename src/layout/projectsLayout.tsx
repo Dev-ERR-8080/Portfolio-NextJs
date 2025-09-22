@@ -345,7 +345,7 @@ export function ProjectShowcase({ apiUrl }: { apiUrl: string }) {
 
     const resizeObserver = new ResizeObserver(() => {
       updateCanvasSize()
-      if (animationState !== "ready") {
+      if (animationState === "vaporizing" || animationState === "fadingIn") {
         createParticles(contentSets[currentProjectIndex])
       }
     })

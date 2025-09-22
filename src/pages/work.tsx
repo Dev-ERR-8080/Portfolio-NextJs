@@ -1,12 +1,13 @@
 'use client'
 
-import React, { useEffect, useRef, useState } from "react"
-import VaporizeTextCycle, { Tag } from "@/components/ui/vapour-text-effect-button"
+import React, { useEffect, useState } from "react"
+import { motion, AnimatePresence } from "framer-motion"
 import NavigationDial from "@/components/circleNav/circleNav"
 import { Floating } from "@/components/floating/floating"
-// import Image from "next/image" // ✅ Uncomment if using next/image
+import Image from "next/image"
 
 type FeatureDetail = {
+  heading: string
   description: string
   image_url: string
 }
@@ -31,7 +32,6 @@ export default function Work() {
   const [projects, setProjects] = useState<Project[]>([])
   const [currentIndex, setCurrentIndex] = useState(0)
   const [loading, setLoading] = useState(true)
-  const vaporRef = useRef<any>(null)
 
   useEffect(() => {
     fetch("/api/projects")
@@ -42,12 +42,6 @@ export default function Work() {
   }, [])
 
   const handleNext = () => {
-      vaporRef.current.nextText()
-  }
-  
-
-  const handleSwitchAfterVapor = () => {
-    console.log("[DEBUG] Switching to next project")
     setCurrentIndex((prev) => (prev + 1) % projects.length)
   }
 
@@ -58,162 +52,165 @@ export default function Work() {
   if (!projects.length) {
     return <div className="text-center pt-32 text-red-400">No projects found.</div>
   }
-  
-  console.log("currentIndex:", currentIndex)
+
   const currentProject = projects[currentIndex]
-  console.log("[DEBUG] Current Project:", currentProject)
+
   return (
-    <div className="dark bg-[#18181b] p-10 text-white relative">
-
-      {/* Background gradients */}
-      <div className="fixed top-0 left-0 w-full h-20 bg-gradient-to-t from-transparent via-transparent to-black pointer-events-none" />
-      <div className="fixed bottom-0 left-0 w-full h-20 bg-gradient-to-t from-black via-transparent to-transparent pointer-events-none" />
-
-      {/* Title - vapor animation */}
-      <div className="">
-        <div className="absolute top-[10%] left-[5%] opacity-50 pointer-events-none z-0">
-          <img
-          src={currentProject.background_url}
-          alt="Project Preview"
-          className="w-full h-full object-contain "
-          loading="lazy"
-        />
+    <div className="dark  text-white relative overflow-hidden flex flex-col gap-20">
+        <div className="absolute inset-0 bg-gradient-to-br from-transparent via-black/40 to-black/90 pointer-events-none z-0" /> 
+        <div className="absolute left-0 w-full h-full opacity-30 pointer-events-none z-0 overflow-hidden">
+          <div className="absolute w-[200%] h-[200%] bg-[radial-gradient(circle,white,transparent_50%)] animate-pulse blur-3xl"></div>
         </div>
-          <div className="pt-24 pb-10 flex flex-col flex-initial max-w-4xl space-y-6 relative">
-            <VaporizeTextCycle
-              ref={vaporRef}
-              texts={projects.map((p: Project) => p.title)}
-              tag={Tag.H1}
-              font={{
-                fontFamily: "Inter, sans-serif",
-                fontSize: "82px",
-                fontWeight: 600,
-              }}
-              color="rgb(255, 255, 255)"
-              spread={5}
-              density={5}
-              direction="left-to-right"
-              alignment="left"
-              animation={{
-                vaporizeDuration: 2,
-                fadeInDuration: 1.5,
-                waitDuration: 0.5,
-              }}
-              onVaporizeComplete={handleSwitchAfterVapor}
-            />
-            <div>
-              <p>{currentProject.description}</p>
-            </div>
+
+      {/* Background vignette & gradients */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/90 pointer-events-none z-0" />
+      
+      <div className="absolute top-0 inset-0 bg-gradient-to-b from-black via-black/20 to-transparent pointer-events-none z-0" />
+      
+
+      <div className="relative top-0 z-10 rounded-xl overflow-hidden h-[80vh] md:h-[70vh] ">
+        {/* image background with overlay */}
+        <div className="absolute inset-0 z-0 top-0">
+          <div className="absolute inset-0 bg-black/50 pointer-events-none z-10" />
+          <Image
+            src={currentProject.background_url}
+            alt="Project Preview"
+            className="object-cover"
+            loading="lazy"
+            fill
+            priority={false}
+          />
+        </div>
+
+          {/* title and description */}
+          <div className="absolute inset-0 flex flex-col justify-end p-6 sm:p-10 z-20">
+            <div className="bg-gradient-to-tr from-gray-950 via-gray-950/75 to-transparent absolute inset-0 z-0" />
+            <AnimatePresence mode="wait">
+              <motion.div
+                className="flex flex-col max-w-4xl relative z-30"
+                key={currentProject.id}
+                initial={{ opacity: 0, y: 60 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -60 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+              >
+                <h1 className="text-4xl sm:text-[68px] font-bold tracking-tight">
+                  {currentProject.title}
+                </h1>
+                <p className="text-sm sm:text-lg text-gray-400 mt-4 leading-relaxed">
+                  {currentProject.description}
+                </p>
+                <div className="flex items-center space-x-6 p-5">
+                  <a
+                    href={currentProject.github_url}
+                    className="relative text-grey-300 underline-offset-1 transition-colors duration-200 after:absolute after:bottom-0 after:left-0 after:w-full after:h-px after:bg-gray-500 after:scale-x-0 after:origin-left after:transition-transform after:duration-300 hover:text-white hover:after:scale-x-100"
+                  >
+                    View on GitHub
+                  </a>
+                  <a
+                    href={currentProject.live_url}
+                    className="relative text-black bg-white p-3 rounded-2xl transition-colors duration-200 after:absolute after:bottom-0 after:left-0 after:w-full after:h-px after:origin-left after:transition-transform after:duration-300 hover:text-black hover:after:scale-y-75"
+                  >
+                    View Live
+                  </a>
+                </div>
+              </motion.div>
+            </AnimatePresence>
           </div>
       </div>
       {/* Project content */}
-      <ProjectDetails key={currentProject.id} project={currentProject} />
-
-      {/* Navigation and floating UI */}
-      <div className="fixed right-10 bottom-10 z-10">
-        <NavigationDial onClick={handleNext}/>
+      <div className="flex flex-col relative z-10 h-[10%] p-10">
+        <ProjectDetails key={currentProject.id} project={currentProject} />
       </div>
-
-      <div className="fixed bottom-6 left-0 right-0 flex justify-center items-center">
+      {/* Navigation + Floating Action */}
+      <div className="absolute right-10 bottom-10 z-30">
+        <NavigationDial onClick={handleNext}  />
+      </div>
+      <div className="fixed bottom-6 left-0 right-0 flex justify-center items-center z-20">
         <Floating />
       </div>
     </div>
   )
 }
 
-// function ProjectDetails({ project }: { project: Project }) {
-//   return (
-//     <div className="max-w-[100%] mx-auto px-6 space-y-6">
-
-//       {/* 🔥 Animated Description */}
-//       <div className="">
-//         <p className="fonr-[20px]"> {project.description} </p>
-//       </div>
-
-//       <div className="flex justify-center space-x-6 text-blue-400">
-//         <a href={project.github_url} target="_blank" rel="noreferrer">GitHub</a>
-//         <a href={project.live_url} target="_blank" rel="noreferrer">Live Demo</a>
-//       </div>
-
-//       <div className="space-y-8 pt-8">
-//         {project.features.map((feature) => (
-//           <div key={feature.id}>
-//             {/* 🔥 Animated Feature Title */}
-//             <h1 className="text-[28px] font-[600] text-[#FF5733]"> {feature.title} </h1>
-
-//             {feature.feature_details.map((detail, idx) => (
-//               <div key={idx} className="pl-4 mt-2 space-y-2">
-//                 {/* 🔥 Animated Feature Description */}
-//                 <p className="text-[16px]"> {detail.description} </p>
-
-//                 <img
-//                   src={detail.image_url}
-//                   alt={`Feature ${feature.title}`}
-//                   className="rounded-lg shadow-lg w-full max-w-xl"
-//                 />
-//               </div>
-//             ))}
-//           </div>
-//         ))}
-//       </div>
-//     </div>
-//   )
-// }
 function ProjectDetails({ project }: { project: Project }) {
   const [currentFeatureIndex, setCurrentFeatureIndex] = useState(0)
 
-  // Auto-switch every 5 seconds
+  // Auto-switch every 6s
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentFeatureIndex((prev) => (prev + 1) % project.features.length)
-    }, 5000)
+    }, 6000)
     return () => clearInterval(interval)
   }, [project.features.length])
 
   const currentFeature = project.features[currentFeatureIndex]
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-      
-      {/* LEFT SIDE → only feature description + background */}
-      <div className="relative space-y-6">
-        {/* Background Image */}
-        <div className="absolute inset-0 opacity-20 -z-10">
-          <img
-            src={currentFeature.feature_details[0]?.image_url || project.background_url}
-            alt="Feature Background"
-            className="w-full h-full object-cover rounded-xl"
-          />
-        </div>
-
-        {/* Feature Title & Description */}
-        <div className="bg-black/60 backdrop-blur-md p-6 rounded-xl shadow-lg">
-          {/* <h3 className="text-2xl font-semibold text-[#FF5733]">{currentFeature.title}</h3> */}
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start relative z-10">
+      {/* LEFT → Feature details */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={currentFeature.id}
+          initial={{ opacity: 0, x: -40 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: 40 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="bg-white/5 backdrop-blur-xl border border-white/10 p-8 rounded-2xl shadow-xl"
+        >
           {currentFeature.feature_details.map((detail, idx) => (
-            <p key={idx} className="text-gray-200 mt-2">
-              {detail.description}
-            </p>
+            <div key={idx} className="mb-6">
+              {detail.heading && (
+                <h5 className="text-xl font-semibold text-[#FF5733] mb-2">
+                  {detail.heading}
+                </h5>
+              )}
+              <p className="text-gray-300 leading-relaxed">{detail.description}</p>
+              {detail.image_url && (
+                <Image
+                  src={detail.image_url}
+                  alt={detail.heading || "Feature Detail"}
+                  width={420}
+                  height={280}
+                  className="rounded-lg mt-3"
+                />
+              )}
+            </div>
           ))}
-        </div>
-      </div>
+        </motion.div>
+      </AnimatePresence>
 
-      {/* RIGHT SIDE → Feature Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {/* RIGHT → Feature Cards */}
+      <motion.div
+        className="grid grid-cols-1 md:grid-cols-2 gap-6"
+        initial="hidden"
+        animate="visible"
+        variants={{
+          hidden: { opacity: 0, y: 30 },
+          visible: {
+            opacity: 1,
+            y: 0,
+            transition: { staggerChildren: 0.15 }
+          }
+        }}
+      >
         {project.features.map((feature, idx) => (
-          <div
+          <motion.div
             key={feature.id}
-            className={`p-6 rounded-xl shadow-md cursor-pointer transition-all duration-500 ${
+            variants={{ hidden: { opacity: 0, scale: 0.95 }, visible: { opacity: 1, scale: 1 } }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.96 }}
+            className={`p-6 rounded-xl shadow-md transition-all duration-500 ${
               idx === currentFeatureIndex
-                ? "bg-[#384837] text-white scale-105"
-                : "bg-[#9bb99d] text-[#2e3b2d] hover:bg-gray-200"
+                ? "bg-gradient-to-r from-[#3c5a3c] to-[#2f402f] text-white shadow-lg"
+                : "bg-white/5 text-gray-300 border border-white/10 hover:bg-white/10"
             }`}
             onClick={() => setCurrentFeatureIndex(idx)}
           >
-            <h4 className="text-lg font-semibold">{feature.title}</h4>
-          </div>
+            <h4 className="text-lg font-medium">{feature.title}</h4>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     </div>
   )
 }
-
