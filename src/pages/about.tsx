@@ -77,7 +77,7 @@ export default function About() {
         <Image
           src="/music.png"
           alt="Music Illustration"
-          className="w-full h-full object-contain rotate-6"
+          className="w-full h-full object-contain rotate-[20deg] ml-4 mt-8"
           loading="lazy"
           width={400}
           height={400}
@@ -139,7 +139,7 @@ export default function About() {
       </div>
       
       
-    <div className="absolute inset-0 bg-gradient-to-br from-transparent via-black/40 to-black/30 pointer-events-none z-0" />
+    {/* <div className="absolute inset-0 bg-gradient-to-br from-transparent via-black/40 to-black/30 pointer-events-none z-0" /> */}
    
     
 
