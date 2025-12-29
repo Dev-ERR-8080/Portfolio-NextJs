@@ -18,7 +18,7 @@ const ProjectBasic = () => {
   return (
       <>
       {/* Heading */}
-        <BoxReveal boxColor={"#5046e6"} duration={0.5}>
+        <BoxReveal boxColor={"#6082B6"} duration={0.5}>
           <h1 className="text-[clamp(2vw,4vw,8vw)] leading-[1.5] text-[#45FF17] font-extrabold tracking-tight mix-blend-difference z-1">
             Projects
           </h1>
@@ -26,7 +26,7 @@ const ProjectBasic = () => {
     <div className="space-y-8 px-4 sm:px-12 ">
         {/* Project 1: Kanishka Dhaba */}
         <div className="max-w-screen-2xl pt-8">
-          <BoxReveal boxColor={"#5046e6"} duration={0.5}>
+          <BoxReveal boxColor={"#6082B6"} duration={0.5}>
             <div className="flex flex-col md:flex-row items-center gap-[50px]">
               <Image
                 src={kanishkaDhaba}
@@ -56,7 +56,7 @@ const ProjectBasic = () => {
 
         {/* Project 2: PackYourBags */}
         <div className="max-w-screen-2xl pt-8 border-b-[0.5px] border-gray-500 pb-4">
-          <BoxReveal boxColor={"#5046e6"} duration={0.5}>
+          <BoxReveal boxColor={"#6082B6"} duration={0.5}>
             <div className="flex flex-col-reverse md:flex-row items-center gap-[50px]">
               <div className="mt-6 text-white leading-relaxed">
                 <h2 className="text-lg sm:text-xl md:text-2xl font-semibold mb-4 ">
@@ -85,11 +85,11 @@ const ProjectBasic = () => {
         </div>
 
         {/* Explore Button */}
-        <BoxReveal boxColor={"#5046e6"} duration={0.5}>
+        <BoxReveal boxColor={"#6082B6"} duration={0.5}>
           <div className="text-center mt-10">
             <Button
               onClick={handleExploreClick}
-              className="bg-[#5046e6] px-6 py-2 text-white font-medium rounded hover:bg-[#3f3bd4] transition duration-300"
+              className="bg-[#278f0d] px-6 py-2 text-white font-medium rounded hover:bg-[#3f3bd4] transition duration-300"
             >
               Explore Projects
             </Button>
